@@ -96,7 +96,7 @@ void pid_control()
   if (dtime >= T)
   {
     P = error;
-    I = I + error;
+    I = I * error;
     D = error - lasterror;
 
     pidval = ((P * Kp) + ((Ki * T) * I) + ((Kd / T) * D)); // calculater pid val
@@ -224,10 +224,28 @@ void btpidv(const String &data)
       _PL(Kd);
       cnt += 5;
       break;
+    case 'T':
+      T = data.substring(cnt + 1, cnt + 6).toInt();
+      _PM("Changed T value to ");
+      _PL(T);
+      cnt += 5;
+      break;
     case 'D':
       Ki = data.substring(cnt + 1, cnt + 6).toFloat();
       _PM("Changed D value to ");
       _PL(Ki);
+      cnt += 5;
+      break;
+    case 'N':
+      minspeed = data.substring(cnt + 1, cnt + 6).toInt();
+      _PM("Changed MinSpeed value to ");
+      _PL(minspeed);
+      cnt += 5;
+      break;
+    case 'X':
+      maxspeed = data.substring(cnt + 1, cnt + 6).toInt();
+      _PM("Changed MaxSpeed value to ");
+      _PL(maxspeed);
       cnt += 5;
       break;
     case 'S':

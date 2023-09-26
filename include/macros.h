@@ -1,6 +1,6 @@
 #pragma once
 //===== Debugging macros ========================
-#define _DEBUG_
+// #define _DEBUG_
 
 #ifdef _DEBUG_
 #define SerialD Serial
